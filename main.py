@@ -1,11 +1,22 @@
 from tkinter import *
+from pytube import YouTube
 
+def download_video(event):
+    user_input = user_link.get()
+    yt = YouTube(str(user_input))
+    video = yt.streams.first()
+    video.download(filename="videodlllll")
+    
 root = Tk()
 
-one = Label(root, text="Option", bg="red", fg="blue")
-one.grid(row=0)
+title = Label(root, text="Vid2Dwonload")
+title.pack()
 
-entry1 = Entry(root)
-entry1.grid(row=1,column=1)
+user_link = Entry(root)
+user_link.pack()
+
+dl_button = Button(root, text="Download MP4", fg="green", bg="yellow")
+dl_button.bind("<Button-1>",download_video)
+dl_button.pack()
 
 root.mainloop()
